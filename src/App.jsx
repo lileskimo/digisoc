@@ -38,7 +38,7 @@ const artifactData = [
         description: "Maand is Rajasthan’s signature semi-classical vocal tradition, popular in Jaipur and spread by royal patronage. Known for melodious, intricate compositions sung in praise of kings or the beauty of Rajasthan, often accompanied by harmonium, sarangi, tabla, and dholak.",
         famousArtists: ["Allah Jilai Bai", "Gauri Devi", "Prem Damami"],
         exampleSong: "Kesariya Balam",
-        exampleSongVideoId: "K8UMb1YDSOM",
+        exampleSongVideoId: "IBhRsVP5Gyk",
         // Image: https://www.shutterstock.com/search/maand-rajasthan
       }
     ]
@@ -804,13 +804,16 @@ const App = () => {
   };
 
   return (
-  <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-100 p-4 font-sans antialiased">
+  <div className="min-h-screen bg-transparent p-4 font-sans antialiased">
       
-      <header className="text-center mb-8">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-orange-900 drop-shadow-md">
-          <span className="text-amber-600">Mhara</span> Sangeet
-        </h1>
-        <p className="text-lg text-gray-600 mt-2">Explore the deep, regional roots of the Desert State's musical heritage.</p>
+      <header className="relative max-w-4xl mx-auto text-center mb-8">
+        <div className="absolute inset-0 -mx-4 sm:mx-0 bg-white/70 backdrop-blur-md border border-white/40 shadow-2xl rounded-3xl pointer-events-none"></div>
+        <div className="relative px-6 py-6">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-orange-900 drop-shadow-md">
+            <span className="text-amber-600">Mhara</span> Sangeet
+          </h1>
+          <p className="text-lg text-gray-600 mt-2">Explore the deep, regional roots of the Desert State's musical heritage.</p>
+        </div>
       </header>
 
       <div className="flex flex-col items-center gap-8 max-w-7xl mx-auto">
@@ -823,6 +826,12 @@ const App = () => {
           onReset={handleReset} 
         />
       </div>
+
+      <footer className="mt-12 mb-4">
+        <div className="mx-auto w-fit px-8 py-3 rounded-full bg-white/70 backdrop-blur border border-white/60 shadow-lg text-sm font-semibold text-orange-900">
+          Made by <a href="https://github.com/lileskimo" target="_blank" rel="noopener noreferrer" className="decoration-orange-600 text-orange-700 hover:text-orange-900">lileskimo</a>
+        </div>
+      </footer>
     </div>
   );
 };

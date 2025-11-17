@@ -4,7 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body { font-family: 'Inter', sans-serif; }
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #fffaf0;
+    background-image: url('/4558730.jpg');
+    background-repeat: repeat;
+    background-size: 520px auto;
+    background-attachment: fixed;
+    background-position: top left;
+}
 
 /* Utility classes for dynamic Tailwind colors - explicit fallbacks */
 .text-amber-700 { color: #b45309; }
