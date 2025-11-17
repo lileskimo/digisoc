@@ -326,7 +326,7 @@ const createRegionIcon = (artifact, isSelected) => {
     // Use the first word of the region name for the label text
     const labelText = artifact.region.split(' ')[0];
     
-  // Build a larger divIcon that contains a circular gradient glow behind
+  // Build a larger divIcon
   // the pill-shaped label. The overall icon is square so we can center
   // the glow properly around the label anchor point.
   // Increase glow visibility: stronger start alpha and larger mid alpha
@@ -449,81 +449,59 @@ const MapCanvas = ({ onSelectArtifact, selectedArtifact }) => {
   }, [onSelectArtifact, selectedArtifact]); // Recalculate if selectedArtifact changes on initial run
 
   /**
-   * Effect 1: Load Leaflet dependencies and initialize the map (Runs ONCE).
+   * Effect 1: Initialize the map once. We assume Leaflet is preloaded via root index.html.
+   * If Leaflet isn't present, show a helpful error and stop the loading spinner.
    */
   useEffect(() => {
-    let scriptLoaded = false;
-    let cleanupLeaflet = () => {};
-
     const initializeMap = (L) => {
-        if (mapContainerRef.current && !mapRef.current) {
-            try {
-                // Initialize Map
-                const map = L.map(mapContainerRef.current, {
-                    maxBounds: [[22, 68], [32, 80]], 
-                    minZoom: 6,
-                    maxZoom: 12,
-                }).setView(RAJASTHAN_CENTER, INITIAL_ZOOM);
+      if (mapContainerRef.current && !mapRef.current) {
+        try {
+          // Initialize Map
+          const map = L.map(mapContainerRef.current, {
+            maxBounds: [[22, 68], [32, 80]],
+            minZoom: 6,
+            maxZoom: 12,
+          }).setView(RAJASTHAN_CENTER, INITIAL_ZOOM);
 
-                // ADD TILE LAYER 
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-                    opacity: 0.8 
-                }).addTo(map);
+          // ADD TILE LAYER
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+            opacity: 0.8,
+          }).addTo(map);
 
-                mapRef.current = map;
-                addGeoJSONAndMarkers(map, L);
-                
-                // Ensure invalidateSize() is called after the DOM element is fully rendered.
-                setTimeout(() => {
-                    map.invalidateSize();
-                }, 0);
-            } catch (e) {
-                console.error("Leaflet map initialization failed:", e);
-                setLeafletError("Failed to initialize the map. Please check the console for details.");
-            }
+          mapRef.current = map;
+          addGeoJSONAndMarkers(map, L);
+
+          // Ensure invalidateSize() is called after the DOM element is fully rendered.
+          setTimeout(() => {
+            map.invalidateSize();
+          }, 500);
+
+          setLoading(false);
+        } catch (e) {
+          console.error('Leaflet map initialization failed:', e);
+          setLeafletError('Failed to initialize the map. Please check the console for details.');
+          setLoading(false);
         }
+      }
     };
 
-    const loadLeafletDependencies = () => {
-        // Load CSS
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-        document.head.appendChild(link);
-
-        // Load JS
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-        script.onload = () => {
-            if (window.L && !scriptLoaded) {
-                setLoading(false);
-                scriptLoaded = true;
-                initializeMap(window.L); 
-            }
-        };
-        script.onerror = () => {
-            setLeafletError("Failed to load Leaflet library. The map cannot be displayed.");
-            setLoading(false);
-        };
-        document.body.appendChild(script);
-
-        cleanupLeaflet = () => {
-            // Remove elements on cleanup
-            if (document.head.contains(link)) document.head.removeChild(link);
-            if (document.body.contains(script)) document.body.removeChild(script);
-        };
-    };
-
-    loadLeafletDependencies();
+    // If Leaflet (window.L) is available (we preloaded it in `index.html`), initialize.
+    if (typeof window !== 'undefined' && window.L) {
+      initializeMap(window.L);
+    } else {
+      // Leaflet not present — set a clear error and stop showing the loading spinner.
+      console.error('Leaflet (window.L) not found. Make sure leaflet.js is included in index.html before the app bundle.');
+      setLeafletError('Leaflet library not loaded. Check your index.html for leaflet.js inclusion.');
+      setLoading(false);
+    }
 
     return () => {
-        cleanupLeaflet();
-        // Clean up the Leaflet map instance
-        if (mapRef.current) {
-            mapRef.current.remove();
-            mapRef.current = null;
-        }
+      // Clean up the Leaflet map instance
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
     };
   }, []); // Empty dependency array ensures one-time initialization.
 
