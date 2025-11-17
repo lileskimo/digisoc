@@ -19,6 +19,7 @@ const getThemeColor = (theme) => {
         case 'indigo-700': return '#4338ca'; // Added indigo for Ajmer
         case 'cyan-700': return '#0891b2'; // Added cyan for Bikaner
         case 'lime-700': return '#65a30d'; // Added lime for Sikar
+        case 'yellow-700': return '#ca8a04'; // Added yellow for Jaisalmer
         default: return '#374151'; // Default gray
     }
 };
@@ -188,6 +189,35 @@ const artifactData = [
         // Image: https://www.shutterstock.com/search/braj-music
       }
     ]
+  },
+  {
+    id: 11,
+    region: "Jaisalmer (Desert-West)",
+    color: "bg-yellow-400",
+    theme: "yellow-700",
+    traditions: [
+      {
+        name: "Manganiyar Desert Song",
+        description: "Jaisalmer’s Manganiyars are famed hereditary bards who narrate desert epics, spirituals, and family histories through soulful vocals and ancient instruments—especially kamaicha, khartal, and dholak.",
+        famousArtists: ["Gazi Khan Barna", "Sakar Khan", "Talab Khan"],
+        exampleSong: "Chhedta Surang",
+        // Image: https://www.gettyimages.in/photos/jaisalmer-music
+      },
+      {
+        name: "Langa Songs",
+        description: "Langas, also centering in Jaisalmer, are masters of sindhi sarangi and algoza, performing songs of love, nature, and war for royal patrons and local events.",
+        famousArtists: ["Ghewar Khan Langa", "Ganga Devi Langa"],
+        exampleSong: "Mumal Kevda",
+        // Image: https://www.gettyimages.in/photos/jaisalmer-music
+      },
+      {
+        name: "Desert Ballads (Haalariya, Ghooghri)",
+        description: "Unique birth and ritual celebration songs like Haalariya and Ghooghri, as well as bhajans and shringar ras songs for solitude and daily desert life.",
+        famousArtists: ["Local Bhopa, Manganiyar troupes"],
+        exampleSong: "Haalariya (Jaisalmer region)",
+        // Image: https://www.shutterstock.com/search/jaisalmer-music
+      }
+    ]
   }
 ];
 
@@ -200,24 +230,76 @@ const rajasthanRegionsGeoJSON = {
   type: "FeatureCollection",
   features: [
     // 0. Rajasthan State Border (Used for visual border)
-    { 
-        type: "Feature", 
-        properties: { id: 0, isStateBorder: true }, 
-        geometry: { 
-            type: "Polygon", 
-            coordinates: [[
-                [74.0, 30.5], [72.5, 29.5], [69.5, 28.0], [70.0, 25.0], 
-                [72.0, 24.0], [75.0, 23.5], [77.0, 24.5], [77.8, 27.5], 
-                [77.0, 29.5], [74.0, 30.5] 
-            ]] 
-        } 
+    {
+      type: "Feature",
+      properties: { id: 0, isStateBorder: true },
+      geometry: {
+        type: "Polygon",
+        coordinates: [
+          [
+            [74.0, 30.5], [72.5, 29.5], [69.5, 28.0], [70.0, 25.0],
+            [72.0, 24.0], [75.0, 23.5], [77.0, 24.5], [77.8, 27.5],
+            [77.0, 29.5], [74.0, 30.5]
+          ]
+        ]
+      }
     },
-    // 1-5. Regional Polygons (Used to calculate marker center points)
-    { type: "Feature", properties: { id: 1 }, geometry: { type: "Polygon", coordinates: [[[69.5, 29.0], [72.5, 29.0], [72.5, 25.0], [69.5, 25.0], [69.5, 29.0]]] } }, 
-    { type: "Feature", properties: { id: 2 }, geometry: { type: "Polygon", coordinates: [[[72.5, 30.0], [76.5, 30.0], [76.5, 27.0], [72.5, 27.0], [72.5, 30.0]]] } },
-    { type: "Feature", properties: { id: 3 }, geometry: { type: "Polygon", coordinates: [[[72.5, 25.5], [75.5, 25.5], [75.5, 23.5], [72.5, 23.5], [72.5, 25.5]]] } },
-    { type: "Feature", properties: { id: 4 }, geometry: { type: "Polygon", coordinates: [[[75.5, 27.5], [78.5, 27.5], [78.5, 24.5], [75.5, 24.5], [75.5, 27.5]]] } },
-    { type: "Feature", properties: { id: 5 }, geometry: { type: "Polygon", coordinates: [[[72.5, 27.5], [75.5, 27.5], [75.5, 25.5], [72.5, 25.5], [72.5, 27.5]]] } },
+    // Updated and added regional points for cities with music forms
+    {
+      type: "Feature",
+      properties: { id: 1, region: "Jaipur (East-Central)" },
+      geometry: { type: "Point", coordinates: [75.7873, 26.9124] }
+    },
+    {
+      type: "Feature",
+      properties: { id: 2, region: "Jodhpur (Marwar)" },
+      geometry: { type: "Point", coordinates: [73.0243, 26.2389] }
+    },
+    {
+      type: "Feature",
+      properties: { id: 3, region: "Udaipur (Mewar)" },
+      geometry: { type: "Point", coordinates: [73.7125, 24.5854] }
+    },
+    {
+      type: "Feature",
+      properties: { id: 4, region: "Ajmer (Central)" },
+      geometry: { type: "Point", coordinates: [74.6399, 26.4499] }
+    },
+    {
+      type: "Feature",
+      properties: { id: 5, region: "Bikaner (Northwest)" },
+      geometry: { type: "Point", coordinates: [73.3119, 28.0229] }
+    },
+    {
+      type: "Feature",
+      properties: { id: 6, region: "Kota (Hadoti)" },
+      geometry: { type: "Point", coordinates: [75.8648, 25.2138] }
+    },
+    {
+      type: "Feature",
+      properties: { id: 7, region: "Alwar (Northeast)" },
+      geometry: { type: "Point", coordinates: [76.6346, 27.552990] }
+    },
+    {
+      type: "Feature",
+      properties: { id: 8, region: "Sikar (Shekhawati)" },
+      geometry: { type: "Point", coordinates: [75.1399, 27.6094] }
+    },
+    {
+      type: "Feature",
+      properties: { id: 9, region: "Bhilwara (Central-South)" },
+      geometry: { type: "Point", coordinates: [74.6359, 25.3460] }
+    },
+    {
+      type: "Feature",
+      properties: { id: 10, region: "Bharatpur (Eastern/Braj)" },
+      geometry: { type: "Point", coordinates: [77.4895, 27.2173] }
+    },
+    {
+      type: "Feature",
+      properties: { id: 11, region: "Jaisalmer (Desert-West)" },
+      geometry: { type: "Point", coordinates: [70.9084, 26.9157] }
+    }
   ]
 };
 
@@ -318,7 +400,7 @@ const MapCanvas = ({ onSelectArtifact, selectedArtifact }) => {
   const addGeoJSONAndMarkers = useCallback((mapInstance, L) => {
       // Clear previous markers if they exist (though shouldn't on first run)
       if (markerLayerRef.current) {
-          markerLayerRef.current.clearLayers();
+        markerLayerRef.current.clearLayers();
       }
 
       // Create a separate layer group for markers (so we can easily manage them)
@@ -332,28 +414,35 @@ const MapCanvas = ({ onSelectArtifact, selectedArtifact }) => {
 
               // Only process regional markers (ID > 0)
               if (featureId > 0) {
-                  const artifact = findArtifact(featureId);
-                  if (artifact) {
-                      // Get the center of the invisible polygon bounds
-                      const center = layer.getBounds().getCenter();
+                const artifact = findArtifact(featureId);
+                if (artifact) {
+                  let center;
 
-                      // Create a custom marker at the center
-                      const marker = L.marker(center, { 
-                          icon: createRegionIcon(artifact, selectedArtifact?.id === artifact.id),
-                          draggable: false,
-                          keyboard: false,
-                      })
-                      .addTo(markerLayer);
-
-                      // Attach the click event to the marker
-                      marker.on('click', (e) => {
-                          mapInstance.panTo(e.latlng); // Pan to the clicked marker
-                          onSelectArtifact(artifact);
-                      });
-
-                      // Store the artifact ID on the marker for selection tracking
-                      marker.__artifactId = artifact.id;
+                  // Handle Point geometries directly
+                  if (feature.geometry.type === "Point") {
+                    center = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+                  } else {
+                    // For other geometries, use bounds
+                    center = layer.getBounds().getCenter();
                   }
+
+                  // Create a custom marker at the center
+                  const marker = L.marker(center, { 
+                      icon: createRegionIcon(artifact, selectedArtifact?.id === artifact.id),
+                      draggable: false,
+                      keyboard: false,
+                  })
+                  .addTo(markerLayer);
+
+                  // Attach the click event to the marker
+                  marker.on('click', (e) => {
+                      mapInstance.panTo(e.latlng); // Pan to the clicked marker
+                      onSelectArtifact(artifact);
+                  });
+
+                  // Store the artifact ID on the marker for selection tracking
+                  marker.__artifactId = artifact.id;
+                }
               }
           },
       }).addTo(mapInstance);
@@ -526,74 +615,80 @@ const SearchImageBlock = ({ title, searchKeyword, icon, themeClass }) => (
 // --- TRADITION CARD COMPONENT ---
 
 const TraditionCard = ({ tradition, themeClass }) => (
-    <div className="p-5 bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-        {/* Tradition Name */}
-        <h4 className={`text-xl font-bold mb-3 text-${themeClass} flex items-center`}>
-            <Music size={20} className={`mr-2 text-${themeClass}`} />
-            {tradition.name}
-        </h4>
-        
-        {/* Description */}
-        <p className="text-gray-700 text-sm leading-relaxed mb-4">{tradition.description}</p>
-        
-        {/* VISUAL ARTIFACTS / IMAGE PLACEHOLDERS */}
-        <div className="mb-4 pt-4 border-t border-gray-100">
-            <p className="text-xs font-bold text-gray-500 mb-2 uppercase">Visual Artifacts (Click to Search)</p>
-            <div className="flex space-x-3">
-                <SearchImageBlock 
-                    title={tradition.famousArtists[0] || "Artist Photo"}
-                    searchKeyword={`${tradition.famousArtists[0] || tradition.name} Rajasthani Singer Portrait`}
-                    icon={<Mic />}
-                    themeClass={themeClass}
-                />
-                <SearchImageBlock 
-                    title={tradition.exampleSong || "Album Cover"}
-                    searchKeyword={`${tradition.exampleSong || tradition.name} Rajasthani Song Album Cover`}
-                    icon={<ImageIcon />}
-                    themeClass={themeClass}
-                />
-            </div>
-        </div>
+  <div className="p-5 bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+    {/* Tradition Name */}
+    <h4 className={`text-xl font-bold mb-3 text-${themeClass} flex items-center`}>
+      <Music size={20} className={`mr-2 text-${themeClass}`} />
+      {tradition.name}
+    </h4>
 
-        <div className="space-y-4">
-            {/* Famous Artists Section */}
-            <div>
-                <p className="text-xs font-bold text-gray-500 mb-1 flex items-center">
-                    <Mic size={14} className="mr-1" /> Other Famous Artists:
-                </p>
-                <ul className="text-sm space-y-1 ml-2">
-                    {tradition.famousArtists.map((artist, index) => (
-                        <li key={index} className="flex items-center">
-                            <Link size={12} className={`mr-2 text-${themeClass} opacity-70`} />
-                            <a 
-                                href={`https://www.google.com/search?q=${encodeURIComponent(artist)}+${encodeURIComponent(tradition.name)}+Rajasthani+Music+Biography`} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="text-blue-600 hover:underline transition-colors"
-                            >
-                                {artist}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+    {/* Description */}
+    <p className="text-gray-700 text-sm leading-relaxed mb-4">{tradition.description}</p>
 
-            {/* Example Song Section */}
-            <div>
-                <p className="text-xs font-bold text-gray-500 mb-1 flex items-center">
-                    <Search size={14} className="mr-1" /> Key Song Example:
-                </p>
-                <a 
-                    href={`https://www.google.com/search?q=${encodeURIComponent(tradition.exampleSong)}+Rajasthani+Folk+Song+Listen`} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-md font-semibold text-blue-800 hover:underline transition-colors ml-2"
-                >
-                    "{tradition.exampleSong}"
-                </a>
-            </div>
-        </div>
+    {/* VISUAL ARTIFACTS / IMAGE PLACEHOLDERS */}
+    <div className="mb-4 pt-4 border-t border-gray-100">
+      <p className="text-xs font-bold text-gray-500 mb-2 uppercase">Visual Artifacts (Click to Search)</p>
+      <div className="flex space-x-3">
+        <SearchImageBlock 
+          title={tradition.famousArtists[0] || "Artist Photo"}
+          searchKeyword={`${tradition.famousArtists[0] || tradition.name} Rajasthani Singer Portrait`}
+          icon={<Mic />}
+          themeClass={themeClass}
+        />
+        <SearchImageBlock 
+          title={tradition.exampleSong || "Album Cover"}
+          searchKeyword={`${tradition.exampleSong || tradition.name} Rajasthani Song Album Cover`}
+          icon={<ImageIcon />}
+          themeClass={themeClass}
+        />
+      </div>
     </div>
+
+    <div className="space-y-4">
+      {/* Famous Artists Section */}
+      <div>
+        <p className="text-xs font-bold text-gray-500 mb-1 flex items-center">
+          <Mic size={14} className="mr-1" /> Famous Artists:
+        </p>
+        <ul className="text-sm space-y-1 ml-2">
+          {tradition.famousArtists.map((artist, index) => (
+            <li key={index} className="flex items-center">
+              <Link size={12} className={`mr-2 text-${themeClass} opacity-70`} />
+              <a 
+                href={`https://www.google.com/search?q=${encodeURIComponent(artist)}+${encodeURIComponent(tradition.name)}+Rajasthani+Music+Biography`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 hover:underline transition-colors"
+              >
+                {artist}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Example Song Section */}
+      <div>
+        <p className="text-xs font-bold text-gray-500 mb-1 flex items-center">
+          <Search size={14} className="mr-1" /> Songs:
+        </p>
+        {tradition.exampleSongVideoId ? (
+          <div className="aspect-w-16 aspect-h-9">
+            <iframe
+              src={`https://www.youtube.com/embed/${tradition.exampleSongVideoId}`}
+              title={tradition.exampleSong}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-lg border border-gray-300"
+            ></iframe>
+          </div>
+        ) : (
+          <p className="text-sm text-gray-500">No video available. Use the search block above to explore.</p>
+        )}
+      </div>
+    </div>
+  </div>
 );
 
 // --- ARTIFACT DETAILS COMPONENT ---
@@ -622,6 +717,7 @@ const ArtifactDetails = ({ artifact, onReset }) => {
         case 'indigo-700': return 'bg-indigo-700 hover:bg-indigo-800'; // Indigo button class
         case 'cyan-700': return 'bg-cyan-700 hover:bg-cyan-800'; // Cyan button class
         case 'lime-700': return 'bg-lime-700 hover:bg-lime-800'; // Lime button class
+        case 'yellow-700': return 'bg-yellow-700 hover:bg-yellow-800'; // Yellow button class
         default: return 'bg-gray-700 hover:bg-gray-800';
     }
   };
