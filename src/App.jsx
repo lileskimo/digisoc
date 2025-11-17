@@ -330,16 +330,17 @@ const createRegionIcon = (artifact, isSelected) => {
   // the glow properly around the label anchor point.
   // Increase glow visibility: stronger start alpha and larger mid alpha
   const glowColorStart = hexToRgba(themeColor, 0.45);
-  const glowColorMid = hexToRgba(themeColor, 0.15);
+  const glowColorMid = hexToRgba(themeColor, 0.12);
 
-  // Larger icon to allow a more prominent glow
-  const ICON_SIZE = 220;
-  const ICON_RADIUS = ICON_SIZE / 2;
+  const LABEL_WIDTH = 140;
+  const LABEL_HEIGHT = 48;
+  const GLOW_SIZE = 220;
+  const GLOW_RADIUS = GLOW_SIZE / 2;
   const GLOW_BLUR_PX = 18;
 
   const iconHtml = `
-    <div class="region-icon-outer" style="position:relative; width:${ICON_SIZE}px; height:${ICON_SIZE}px; display:flex; align-items:center; justify-content:center;">
-      <div class="region-glow" style="position:absolute; width:${ICON_SIZE}px; height:${ICON_SIZE}px; border-radius:${ICON_RADIUS}px; background: radial-gradient(circle at 50% 45%, ${glowColorStart} 0%, ${glowColorMid} 35%, rgba(0,0,0,0) 75%); filter: blur(${GLOW_BLUR_PX}px); opacity:1;"></div>
+    <div class="region-icon-outer" style="position:relative; width:${LABEL_WIDTH}px; height:${LABEL_HEIGHT}px; display:flex; align-items:center; justify-content:center;">
+      <div class="region-glow" style="position:absolute; width:${GLOW_SIZE}px; height:${GLOW_SIZE}px; border-radius:${GLOW_RADIUS}px; background: radial-gradient(circle at 50% 45%, ${glowColorStart} 0%, ${glowColorMid} 40%, rgba(0,0,0,0) 75%); filter: blur(${GLOW_BLUR_PX}px); opacity:1;"></div>
       <div class="region-marker" 
          style="
            background-color:${themeColor}; 
@@ -356,8 +357,8 @@ const createRegionIcon = (artifact, isSelected) => {
   return L.divIcon({
     className: 'custom-region-icon',
     html: iconHtml,
-    iconSize: [ICON_SIZE, ICON_SIZE], // Larger square to accommodate glow
-    iconAnchor: [ICON_RADIUS, ICON_RADIUS] // Anchor at center of the glow so label appears outward
+    iconSize: [LABEL_WIDTH, LABEL_HEIGHT],
+    iconAnchor: [LABEL_WIDTH / 2, LABEL_HEIGHT / 2],
   });
 };
 
@@ -408,6 +409,12 @@ const MapCanvas = ({ onSelectArtifact, selectedArtifact }) => {
 
       L.geoJSON(rajasthanRegionsGeoJSON, {
           style: getGeoJsonStyle, // Style hides regional polygons
+          pointToLayer: (_feature, latlng) => L.circleMarker(latlng, {
+            radius: 0,
+            opacity: 0,
+            fillOpacity: 0,
+            interactive: false,
+          }),
           onEachFeature: (feature, layer) => {
               const featureId = feature.properties.id;
 
@@ -491,9 +498,21 @@ const MapCanvas = ({ onSelectArtifact, selectedArtifact }) => {
       return;
     }
 
-    initializeMap();
+    let rafId = null;
+    const ensureContainerAndInit = () => {
+      if (!mapContainerRef.current) {
+        rafId = requestAnimationFrame(ensureContainerAndInit);
+        return;
+      }
+      initializeMap();
+    };
+
+    ensureContainerAndInit();
 
     return () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
       // Clean up the Leaflet map instance
       if (mapRef.current) {
         mapRef.current.remove();
