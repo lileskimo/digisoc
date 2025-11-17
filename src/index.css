@@ -1,0 +1,87 @@
+/* Custom styles (moved from inline <style> in App.jsx) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body { font-family: 'Inter', sans-serif; }
+
+/* Utility classes for dynamic Tailwind colors - explicit fallbacks */
+.text-amber-700 { color: #b45309; }
+.text-sky-700 { color: #0369a1; }
+.text-red-700 { color: #b91c1c; }
+.text-emerald-700 { color: #047857; }
+.text-purple-700 { color: #7e22ce; }
+.text-gray-700 { color: #374151; }
+
+.bg-amber-700 { background-color: #b45309; }
+.bg-sky-700 { background-color: #0369a1; }
+.bg-red-700 { background-color: #b91c1c; }
+.bg-emerald-700 { background-color: #047857; }
+.bg-purple-700 { background-color: #7e22ce; }
+.bg-gray-700 { background-color: #374151; }
+
+/* Additional button hover classes for safety due to dynamic generation */
+.hover\\:bg-amber-800:hover { background-color: #92400e; }
+.hover\\:bg-sky-800:hover { background-color: #075985; }
+.hover\\:bg-red-800:hover { background-color: #991b1b; }
+.hover\\:bg-emerald-800:hover { background-color: #065f46; }
+.hover\\:bg-purple-800:hover { background-color: #6b21a8; }
+.hover\\:bg-gray-800:hover { background-color: #1f2937; }
+
+/* Ensure Leaflet components render correctly and z-index is appropriate */
+.leaflet-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.75rem; /* rounded-xl */
+}
+
+/* Custom Marker Styling */
+.custom-region-icon {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    pointer-events: auto; /* Ensure the marker is clickable */
+}
+.region-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 40px;
+    border-radius: 20px; /* Pill shape */
+    white-space: nowrap;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem; /* text-xs */
+    user-select: none;
+    line-height: 1;
+    position: relative;
+    z-index: 2;
+}
+
+/* Outer glow wrapper for region icons */
+.region-icon-outer { pointer-events: none; }
+.region-icon-outer .region-marker { pointer-events: auto; }
+
+/* Make a default smooth glow for the region; actual gradient colors applied inline */
+.region-glow {
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    border-radius: 999px;
+    filter: blur(18px);
+    z-index: 1; /* behind the label */
+    opacity: 1;
+}
+
+/* Ensure Leaflet marker icons can render overflow so the glow is visible outside the icon bounds */
+.leaflet-marker-icon.custom-region-icon,
+.leaflet-marker-icon.custom-region-icon img {
+    overflow: visible;
+}
