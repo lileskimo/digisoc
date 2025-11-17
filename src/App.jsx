@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import L from 'leaflet';
 import { Music, MapPin, Search, Mic, Link, Image as ImageIcon, RotateCw } from 'lucide-react';
 
 // --- ARTIFACT DATA & CONSTANTS ---
@@ -305,9 +306,7 @@ const rajasthanRegionsGeoJSON = {
 
 // Custom Icon Generator for Region Labels
 const createRegionIcon = (artifact, isSelected) => {
-    // Check for L globally before use
-    const L = window.L;
-    if (typeof L === 'undefined') return null;
+    if (!L?.divIcon) return null;
 
     const themeColor = getThemeColor(artifact.theme);
   // Helper to convert hex color to rgba string for gradient stops
@@ -453,7 +452,7 @@ const MapCanvas = ({ onSelectArtifact, selectedArtifact }) => {
    * If Leaflet isn't present, show a helpful error and stop the loading spinner.
    */
   useEffect(() => {
-    const initializeMap = (L) => {
+    const initializeMap = () => {
       if (mapContainerRef.current && !mapRef.current) {
         try {
           // Initialize Map
@@ -486,15 +485,13 @@ const MapCanvas = ({ onSelectArtifact, selectedArtifact }) => {
       }
     };
 
-    // If Leaflet (window.L) is available (we preloaded it in `index.html`), initialize.
-    if (typeof window !== 'undefined' && window.L) {
-      initializeMap(window.L);
-    } else {
-      // Leaflet not present — set a clear error and stop showing the loading spinner.
-      console.error('Leaflet (window.L) not found. Make sure leaflet.js is included in index.html before the app bundle.');
-      setLeafletError('Leaflet library not loaded. Check your index.html for leaflet.js inclusion.');
+    if (!L) {
+      setLeafletError('Leaflet library not available. Ensure it is installed and imported.');
       setLoading(false);
+      return;
     }
+
+    initializeMap();
 
     return () => {
       // Clean up the Leaflet map instance
@@ -510,8 +507,7 @@ const MapCanvas = ({ onSelectArtifact, selectedArtifact }) => {
    */
   useEffect(() => {
     // Check if map and marker layer exist and Leaflet is loaded
-    const L = window.L;
-    if (mapRef.current && markerLayerRef.current && L) {
+    if (mapRef.current && markerLayerRef.current) {
         markerLayerRef.current.eachLayer(layer => {
             if (layer.__artifactId) {
                 const artifact = findArtifact(layer.__artifactId);
@@ -534,15 +530,6 @@ const MapCanvas = ({ onSelectArtifact, selectedArtifact }) => {
   }, [selectedArtifact]);
 
   // --- Render Loading/Error States ---
-  if (loading) {
-    return (
-        <div className="flex items-center justify-center w-full h-[550px] bg-gray-50 rounded-xl border-4 border-gray-300">
-            <RotateCw size={32} className="animate-spin text-orange-500 mr-2" />
-            <p className="text-lg text-gray-700 font-medium">Loading Map Assets...</p>
-        </div>
-    );
-  }
-
   if (leafletError) {
     return (
         <div className="flex flex-col items-center justify-center w-full h-[550px] bg-red-100 rounded-xl border-4 border-red-400 p-6 text-center">
@@ -559,9 +546,18 @@ const MapCanvas = ({ onSelectArtifact, selectedArtifact }) => {
         <div 
           ref={mapContainerRef} 
           id="leaflet-map" 
-          className="w-full" 
-          style={{ height: '100%', zIndex: 1 }} 
+          className="w-full h-full" 
+          style={{ zIndex: 1 }} 
         />
+
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-[1001]">
+            <div className="flex items-center bg-white border border-gray-200 rounded-xl px-5 py-3 shadow-lg">
+              <RotateCw size={28} className="animate-spin text-orange-500 mr-3" />
+              <p className="text-base font-semibold text-gray-800">Loading map assets…</p>
+            </div>
+          </div>
+        )}
         
         {/* Instructions overlay */}
         <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm p-3 rounded-lg shadow-xl text-xs font-medium text-gray-700 hidden sm:block z-[1000]">
