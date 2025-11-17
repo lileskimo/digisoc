@@ -38,6 +38,7 @@ const artifactData = [
         description: "Maand is Rajasthan’s signature semi-classical vocal tradition, popular in Jaipur and spread by royal patronage. Known for melodious, intricate compositions sung in praise of kings or the beauty of Rajasthan, often accompanied by harmonium, sarangi, tabla, and dholak.",
         famousArtists: ["Allah Jilai Bai", "Gauri Devi", "Prem Damami"],
         exampleSong: "Kesariya Balam",
+        exampleSongVideoId: "K8UMb1YDSOM",
         // Image: https://www.shutterstock.com/search/maand-rajasthan
       }
     ]
@@ -53,6 +54,7 @@ const artifactData = [
         description: "The Langa community, centered in Jodhpur, are legendary sarangi players and vocalists. Their lively music is integral to Rajasthani weddings and harvest festivals, typically accompanied by dhol and harmonium.",
         famousArtists: ["Dare Khan Langa", "Ghewar Khan"],
         exampleSong: "Kesariya Balam (Langa rendition)",
+        exampleSongVideoId: "K8UMb1YDSOM",
         // Image: https://www.gettyimages.in/photos/langa-musicians
       },
       {
@@ -60,6 +62,7 @@ const artifactData = [
         description: "Manganiyars are hereditary bards performing epic ballads, devotional works, and romantic songs for Rajput patrons, using kamaicha, dholak, and harmonium.",
         famousArtists: ["Anwar Khan Manganiyar", "Mame Khan"],
         exampleSong: "Nimbooda Nimbooda",
+        exampleSongVideoId: "YLsIl0G0qlM",
         // Image: https://www.alamy.com/stock-photo/manganiyar-rajasthan.html
       }
     ]
@@ -75,6 +78,7 @@ const artifactData = [
         description: "Kalbelia dance and music, performed by the snake-charmer Kalbelia community, is noted for fast-paced rhythms, high-energy singing, and skilled pungi and dholak playing.",
         famousArtists: ["Gulabo Sapera", "Kalbelia collectives"],
         exampleSong: "Udja Kale Kawa",
+        exampleSongVideoId: "21Ry8n785xk",
         // Image: https://www.freepik.com/free-photos-vectors/kalbelia-dance
       },
       {
@@ -82,6 +86,7 @@ const artifactData = [
         description: "Panihari songs, prominent in Mewar, narrate the life and emotions of women fetching water, set to gentle melodies and soulful lyrics.",
         famousArtists: ["Local Panihari singers"],
         exampleSong: "Panihari Geet",
+        exampleSongVideoId: "Wkm6qPgmnvI",
         // Image: https://www.shutterstock.com/search/panihari
       }
     ]
@@ -96,7 +101,7 @@ const artifactData = [
         name: "Ajmer Sufi Qawwali",
         description: "Qawwali singing at Ajmer Sharif combines deep Sufi lyrics in Hindi, Persian, and Urdu with tabla and harmonium, creating ecstatic devotional soundscapes.",
         famousArtists: ["Warsis Brothers", "Ajmer Dargah Qawwals"],
-        exampleSong: "Bhar Do Jholi Meri Ya Mohammad",
+        exampleSong: "Ajmer Dargah Sama Qawwali",
         // Image: https://www.gettyimages.in/photos/qawwali-ajmer
       }
     ]
@@ -112,6 +117,7 @@ const artifactData = [
         description: "This oral epic tradition tells the tale of the folk hero Pabuji, narrated through song and giant phads (painted canvas backdrops).",
         famousArtists: ["Phad artists of Bikaner"],
         exampleSong: "Pabuji Ka Parichay",
+        exampleSongVideoId: "R9DvNJMqI2I",
         // Image: https://www.shutterstock.com/search/phad-rajasthan
       }
     ]
@@ -142,6 +148,7 @@ const artifactData = [
         description: "The Bhapang is a rare single-string percussion instrument essential in Alwar’s folk music, accompanying bhajans, Marwari songs, and local poetry.",
         famousArtists: ["Jogi Community performers"],
         exampleSong: "Alwar Bhapang Bhajan",
+        exampleSongVideoId: "P0CTMo-Zyaw",
         // Image: https://artsandculture.google.com/entity/bhapang/m01kllf
       }
     ]
@@ -157,6 +164,7 @@ const artifactData = [
         description: "Shekhawati’s iconic dance-singing style, originally of the Bhil tribe, now a popular women’s folk dance with swirling ghaghara dresses and spirited choruses.",
         famousArtists: ["Local dance groups"],
         exampleSong: "Shekhawati Ghoomar Geet",
+        exampleSongVideoId: "K8UMb1YDSOM",
         // Image: https://www.freepik.com/free-photos-vectors/ghoomar-dance
       }
     ]
@@ -172,6 +180,7 @@ const artifactData = [
         description: "Tribal Terah Taali features dancers with thirteen small manjira (metal cymbals) performing ceremonial dances, accompanied by devotional bhajans and dholak.",
         famousArtists: ["Meena and Bhil artists"],
         exampleSong: "Terah Taali Bhilwara",
+        exampleSongVideoId: "XeUI8Cv9uck",
         // Image: https://www.shutterstock.com/search/terah-taali
       }
     ]
@@ -187,6 +196,7 @@ const artifactData = [
         description: "Traditional Braj folk songs for Holi and festivals, with expressive vocals and dhol, harmonium accompaniment.",
         famousArtists: ["Local Braj singers"],
         exampleSong: "Braj Ki Holi Geet",
+        exampleSongVideoId: "5QFL3JzEgrc",
         // Image: https://www.shutterstock.com/search/braj-music
       }
     ]
@@ -202,6 +212,7 @@ const artifactData = [
         description: "Jaisalmer’s Manganiyars are famed hereditary bards who narrate desert epics, spirituals, and family histories through soulful vocals and ancient instruments—especially kamaicha, khartal, and dholak.",
         famousArtists: ["Gazi Khan Barna", "Sakar Khan", "Talab Khan"],
         exampleSong: "Chhedta Surang",
+        videoUnavailable: true,
         // Image: https://www.gettyimages.in/photos/jaisalmer-music
       },
       {
@@ -209,6 +220,7 @@ const artifactData = [
         description: "Langas, also centering in Jaisalmer, are masters of sindhi sarangi and algoza, performing songs of love, nature, and war for royal patrons and local events.",
         famousArtists: ["Ghewar Khan Langa", "Ganga Devi Langa"],
         exampleSong: "Mumal Kevda",
+        exampleSongVideoId: "Ah1gS3ZtNrg",
         // Image: https://www.gettyimages.in/photos/jaisalmer-music
       },
       {
@@ -217,6 +229,14 @@ const artifactData = [
         famousArtists: ["Local Bhopa, Manganiyar troupes"],
         exampleSong: "Haalariya (Jaisalmer region)",
         // Image: https://www.shutterstock.com/search/jaisalmer-music
+      },
+      {
+        name: "Manganiyar Contemporary Fusion",
+        description: "Modern collaborations by Manganiyar artists blend folk melodies with contemporary production, bringing desert sounds like kamaicha and khartal to global stages.",
+        famousArtists: ["Mame Khan", "Kutle Khan"],
+        exampleSong: "Choudhary (Manganiyar Folk)",
+        exampleSongVideoId: "1gukvtH_a3I",
+        // Image reference intentionally omitted
       }
     ]
   }
@@ -607,82 +627,91 @@ const SearchImageBlock = ({ title, searchKeyword, icon, themeClass }) => (
 
 // --- TRADITION CARD COMPONENT ---
 
-const TraditionCard = ({ tradition, themeClass }) => (
-  <div className="p-5 bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-    {/* Tradition Name */}
-    <h4 className={`text-xl font-bold mb-3 text-${themeClass} flex items-center`}>
-      <Music size={20} className={`mr-2 text-${themeClass}`} />
-      {tradition.name}
-    </h4>
+const TraditionCard = ({ tradition, themeClass }) => {
+  const hasVideo = Boolean(tradition.exampleSongVideoId);
 
-    {/* Description */}
-    <p className="text-gray-700 text-sm leading-relaxed mb-4">{tradition.description}</p>
+  return (
+    <div className="p-5 bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+      {/* Tradition Name */}
+      <h4 className={`text-xl font-bold mb-3 text-${themeClass} flex items-center`}>
+        <Music size={20} className={`mr-2 text-${themeClass}`} />
+        {tradition.name}
+      </h4>
 
-    {/* VISUAL ARTIFACTS / IMAGE PLACEHOLDERS */}
-    <div className="mb-4 pt-4 border-t border-gray-100">
-      <p className="text-xs font-bold text-gray-500 mb-2 uppercase">Visual Artifacts (Click to Search)</p>
-      <div className="flex space-x-3">
-        <SearchImageBlock 
-          title={tradition.famousArtists[0] || "Artist Photo"}
-          searchKeyword={`${tradition.famousArtists[0] || tradition.name} Rajasthani Singer Portrait`}
-          icon={<Mic />}
-          themeClass={themeClass}
-        />
-        <SearchImageBlock 
-          title={tradition.exampleSong || "Album Cover"}
-          searchKeyword={`${tradition.exampleSong || tradition.name} Rajasthani Song Album Cover`}
-          icon={<ImageIcon />}
-          themeClass={themeClass}
-        />
+      {/* Description */}
+      <p className="text-gray-700 text-sm leading-relaxed mb-4">{tradition.description}</p>
+
+      {/* VISUAL ARTIFACTS / IMAGE PLACEHOLDERS */}
+      <div className="mb-4 pt-4 border-t border-gray-100">
+        <p className="text-xs font-bold text-gray-500 mb-2 uppercase">Visual Artifacts (Click to Search)</p>
+        <div className="flex space-x-3">
+          <SearchImageBlock 
+            title={tradition.famousArtists[0] || "Artist Photo"}
+            searchKeyword={`${tradition.famousArtists[0] || tradition.name} Rajasthani Singer Portrait`}
+            icon={<Mic />}
+            themeClass={themeClass}
+          />
+          <SearchImageBlock 
+            title={tradition.exampleSong || "Album Cover"}
+            searchKeyword={`${tradition.exampleSong || tradition.name} Rajasthani Song Album Cover`}
+            icon={<ImageIcon />}
+            themeClass={themeClass}
+          />
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        {/* Famous Artists Section */}
+        <div>
+          <p className="text-xs font-bold text-gray-500 mb-1 flex items-center">
+            <Mic size={14} className="mr-1" /> Famous Artists:
+          </p>
+          <ul className="text-sm space-y-1 ml-2">
+            {tradition.famousArtists.map((artist, index) => (
+              <li key={index} className="flex items-center">
+                <Link size={12} className={`mr-2 text-${themeClass} opacity-70`} />
+                <a 
+                  href={`https://www.google.com/search?q=${encodeURIComponent(artist)}+${encodeURIComponent(tradition.name)}+Rajasthani+Music+Biography`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-blue-600 hover:underline transition-colors"
+                >
+                  {artist}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Example Song Section */}
+        <div>
+          <p className="text-xs font-bold text-gray-500 mb-2 flex items-center">
+            <Search size={14} className="mr-1" /> Featured Song:
+          </p>
+          {hasVideo ? (
+            <div className="w-full border border-gray-200 rounded-lg overflow-hidden shadow-sm bg-black/5">
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  src={`https://www.youtube.com/embed/${tradition.exampleSongVideoId}`}
+                  title={tradition.exampleSong}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full"
+                ></iframe>
+              </div>
+            </div>
+          ) : (
+            <div className="text-sm text-gray-500 italic">
+              <p>YouTube video not available for this song right now.</p>
+              <p>Please use the search cards above to explore more media.</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
-
-    <div className="space-y-4">
-      {/* Famous Artists Section */}
-      <div>
-        <p className="text-xs font-bold text-gray-500 mb-1 flex items-center">
-          <Mic size={14} className="mr-1" /> Famous Artists:
-        </p>
-        <ul className="text-sm space-y-1 ml-2">
-          {tradition.famousArtists.map((artist, index) => (
-            <li key={index} className="flex items-center">
-              <Link size={12} className={`mr-2 text-${themeClass} opacity-70`} />
-              <a 
-                href={`https://www.google.com/search?q=${encodeURIComponent(artist)}+${encodeURIComponent(tradition.name)}+Rajasthani+Music+Biography`} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 hover:underline transition-colors"
-              >
-                {artist}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Example Song Section */}
-      <div>
-        <p className="text-xs font-bold text-gray-500 mb-1 flex items-center">
-          <Search size={14} className="mr-1" /> Songs:
-        </p>
-        {tradition.exampleSongVideoId ? (
-          <div className="aspect-w-16 aspect-h-9">
-            <iframe
-              src={`https://www.youtube.com/embed/${tradition.exampleSongVideoId}`}
-              title={tradition.exampleSong}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full rounded-lg border border-gray-300"
-            ></iframe>
-          </div>
-        ) : (
-          <p className="text-sm text-gray-500">No video available. Use the search block above to explore.</p>
-        )}
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 // --- ARTIFACT DETAILS COMPONENT ---
 
